@@ -1,6 +1,6 @@
 window.onload=function () {
     let imgs = document.querySelectorAll(".imgs img");
-    let dots = document.querySelectorAll(".second a");
+    let dots = document.querySelectorAll(".second .left .dot a");
     let banner = document.querySelector(".second .container");
     let leftBtn = document.querySelector(".btn .left");
     let rightBtn = document.querySelector(".btn .right");
@@ -44,7 +44,7 @@ window.onload=function () {
     }
 
     for (let i = 0; i < dots.length; i++) {
-        dots[i].onmouseenter = function () {
+        dots[i].onmouseover = function () {
             if (flag) {
                 for (let j = 0; j < dots.length; j++) {
                     dots[j].classList.remove("active");
@@ -91,7 +91,7 @@ window.onload=function () {
     let oneflag = true;
     for (let i = 0; i < onedots.length; i++) {
         onedots[i].onclick = function () {
-            for (let j = 0; j < onedots.length; j++) {
+             for (let j = 0; j < onedots.length; j++) {
                 onedots[j].classList.remove("active");
                 oneimgs[j].style.left = onewidths + "px";
             }
@@ -106,7 +106,7 @@ window.onload=function () {
     function onemove() {
         onenext++;
         if (onenext == onedots.length) {
-            onenext = 0;
+            return;
         }
         oneimgs[onenext].style.left = onewidths + "px";
         animate(oneimgs[onenow], {left: -onewidths});
@@ -129,7 +129,7 @@ window.onload=function () {
     function onemoveL() {
         onenext--;
         if (onenext < 0) {
-            onenext = onedots.length - 1;
+            return;
         }
         oneimgs[onenext].style.left = -onewidths + "px";
         animate(oneimgs[onenow], {left: onewidths});
@@ -150,7 +150,7 @@ window.onload=function () {
     };
 
 
-
+    //为你推荐
     let rightList = document.querySelector(".longer");
     let leftBtn_one = document.querySelector(".oBtn_left");
     let rightBtn_one = document.querySelector(".oBtn_right");
@@ -174,7 +174,7 @@ window.onload=function () {
     }
 
 
-
+    //小米闪购
     let rightList_o = document.querySelector(".quite .phone1");
     let leftBtn_two = document.querySelector(".quite .tBtn_left");
     let rightBtn_two = document.querySelector(".quite .tBtn_right");
@@ -197,9 +197,11 @@ window.onload=function () {
         rightList_o.style.transform = `translate(${-ow * times_o}px)`;
     }
 
+
+    //选项卡
     let lists=document.querySelectorAll(".second .left .item");
     let sons=document.querySelectorAll(".second .left ul li .son");
-    console.log(lists,sons);
+    // console.log(lists,sons);
     for (let i=0;i<lists.length;i++){
         lists[i].onmouseover=function(){
             for (let j=0;j<sons.length;j++){
@@ -211,4 +213,47 @@ window.onload=function () {
             sons[i].style.display="none";
         }
     }
-}
+
+
+    //back
+    let backs=document.querySelectorAll(".ding li")[3];
+    console.log(backs);
+    backs.onclick=function () {
+        animate(document.body,{scrollTop:0},0);
+        animate(document.documentElement,{scrollTop:0},0);
+    }
+
+//加点
+    let bot = document.querySelectorAll("main .home .top a");
+    let ols = document.querySelectorAll("main .container .home .bottom ol");
+    console.log(bot,ols);
+    bot[0].classList.add("a1");
+    ols[0].style.display = "flex";
+    for (let i = 0; i < bot.length; i++) {
+        bot[i].onmouseover = function () {
+            for (let j = 0; j < bot.length; j++) {
+                bot[j].classList.remove("a1");
+                ols[j].style.display = "none";
+            }
+            bot[i].classList.add("a1");
+            ols[i].style.display = "flex";
+        }
+    }
+
+};
+//back
+window.onscroll=function () {
+    let dongs=document.body.scrollTop||document.documentElement.scrollTop;
+    let backss=document.querySelectorAll(".ding li")[3];
+    if (dongs>1200){
+        backss.style.display="block";
+    }else {
+        backss.style.display="none";
+
+    }
+};
+
+
+
+
+
