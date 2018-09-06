@@ -56,7 +56,7 @@ a{
     width: 300px;
     height: 40px;
     float: left;
-    padding-left: 100px;
+    padding-left: 130px;
 }
 .center a{
     margin-left: 5px;
@@ -532,7 +532,8 @@ main .phone .top a{
     float: right;
     line-height: 50px;
     margin-top: 20px;
-    color: #000;
+    color: rgba(0, 0, 0, .8);
+    font-size: 20px;
     /*margin-right: 30px;*/
 }
 main .phone .bottom{
@@ -615,11 +616,11 @@ main .home .top{
 main .home .top h2 a{
     display: block;
     float: right;
-    line-height: 20px;
+    line-height: 15px;
     /*margin-top: 0;*/
-    color: #000;
+    color: rgba(0, 0, 0, .8);
     margin-left: 30px;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
 
 }
 main .home .top a.a1{
@@ -1354,7 +1355,17 @@ footer .top .one .list{
     /*background: #ffc313;*/
     padding-top: 30px;
     margin-right: 5px;
+    position: relative;
 }
+footer .top .one .list p{
+    font-size: 22px;
+    position: absolute;
+    left: 36px;
+    top: 30px;
+}
+/*footer .top .one .list p:hover{*/
+    /*color: #ff8330;*/
+/*}*/
 footer .top .one .list .ok{
     display: block;
     font-size: 18px;
@@ -1363,9 +1374,16 @@ footer .top .one .list .ok{
     float: left;
     color: #616161;
 }
-footer .top .one .list .ok:hover{
+footer .top .one .list .box_m:hover a{
     color: #ff8330;
 }
+footer .top .one .list .box_m:hover p{
+    color: #ff8330;
+}
+/*footer .top .one .list .ok:hover{*/
+    /*color: #ff8330;*/
+/*}*/
+
 footer span{
     color: #e0e0e0;
 }

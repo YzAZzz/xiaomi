@@ -80,74 +80,100 @@ window.onload=function () {
 
 
     //小1
-    let oneimgs = document.querySelectorAll(".recommendation .list .num_1 .banner .master");
-    let onedots = document.querySelectorAll(".recommendation .list .num_1 .dot li");
-    let oneleftbtn = document.querySelectorAll(".recommendation .list .num_1 .leftbtn")[0];
-    let onerightbtn = document.querySelectorAll(".recommendation .list .num_1 .rightbtn")[0];
-    let onewidths = parseInt(getComputedStyle(oneimgs[0], null).width);
-    // console.log(oneimgs);
-    let onenow = 0;
-    let onenext = 0;
-    let oneflag = true;
-    for (let i = 0; i < onedots.length; i++) {
-        onedots[i].onclick = function () {
-             for (let j = 0; j < onedots.length; j++) {
-                onedots[j].classList.remove("active");
-                oneimgs[j].style.left = onewidths + "px";
+    let xiaolunbo=function (oneimgs,onedots,oneleftbtn,onerightbtn,onewidths,num) {
+        let onenow = 0;
+        let onenext = 0;
+        let oneflag = true;
+        for (let i = 0; i < onedots.length; i++) {
+            onedots[i].onclick = function () {
+                for (let j = 0; j < onedots.length; j++) {
+                    onedots[j].classList.remove("active");
+                    oneimgs[j].style.left = onewidths + "px";
+                }
+                onedots[i].classList.add("active");
+                oneimgs[i].style.left = "0";
+                onenow = onenext;
             }
-            onedots[i].classList.add("active");
-            oneimgs[i].style.left = "0";
+        }
+        oneimgs[0].style.left = "0";
+        onedots[0].classList.add("active");
+
+        function onemove() {
+            onenext++;
+            if (onenext == num) {
+                return;
+            }
+            oneimgs[onenext].style.left = onewidths + "px";
+            animate(oneimgs[onenow], {left: -onewidths});
+            animate(oneimgs[onenext], {left: 0}, function () {
+                oneflag = true;
+            });
+            onedots[onenow].classList.remove("active");
+            onedots[onenext].classList.add(("active"));
             onenow = onenext;
         }
-    }
-    oneimgs[0].style.left = "0";
-    onedots[0].classList.add("active");
 
-    function onemove() {
-        onenext++;
-        if (onenext == onedots.length) {
-            return;
+        onerightbtn.onclick = function () {
+            if (!oneflag) {
+                return;
+            }
+            oneflag = false;
+            onemove();
         }
-        oneimgs[onenext].style.left = onewidths + "px";
-        animate(oneimgs[onenow], {left: -onewidths});
-        animate(oneimgs[onenext], {left: 0}, function () {
-            oneflag = true;
-        });
-        onedots[onenow].classList.remove("active");
-        onedots[onenext].classList.add(("active"));
-        onenow = onenext;
-    }
 
-    onerightbtn.onclick = function () {
-        if (!oneflag) {
-            return;
+        function onemoveL() {
+            onenext--;
+            if (onenext < 0) {
+                return;
+            }
+            oneimgs[onenext].style.left = -onewidths + "px";
+            animate(oneimgs[onenow], {left: onewidths});
+            animate(oneimgs[onenext], {left: 0}, function () {
+                oneflag = true;
+            });
+            onedots[onenow].classList.remove("active");
+            onedots[onenext].classList.add(("active"));
+            onenow = onenext;
         }
-        oneflag = false;
-        onemove();
-    }
 
-    function onemoveL() {
-        onenext--;
-        if (onenext < 0) {
-            return;
-        }
-        oneimgs[onenext].style.left = -onewidths + "px";
-        animate(oneimgs[onenow], {left: onewidths});
-        animate(oneimgs[onenext], {left: 0}, function () {
-            oneflag = true;
-        });
-        onedots[onenow].classList.remove("active");
-        onedots[onenext].classList.add(("active"));
-        onenow = onenext;
+        oneleftbtn.onclick = function () {
+            if (!oneflag) {
+                return;
+            }
+            oneflag = false;
+            onemoveL();
+        };
     }
+    let oneimgs = document.querySelectorAll(".recommendation .one .num_1 .banner .master");
+    let onedots = document.querySelectorAll(".recommendation .one .num_1 .dot li");
+    let oneleftbtn = document.querySelectorAll(".recommendation .one .num_1 .one")[0];
+    let onerightbtn = document.querySelectorAll(".recommendation .one .num_1 .one_1")[0];
+    let onewidths = parseInt(getComputedStyle(oneimgs[0], null).width);
+    xiaolunbo(oneimgs,onedots,oneleftbtn,onerightbtn,onewidths,3);
 
-    oneleftbtn.onclick = function () {
-        if (!oneflag) {
-            return;
-        }
-        oneflag = false;
-        onemoveL();
-    };
+    //2
+    let twoimgs = document.querySelectorAll(".recommendation .two .num_1 .banner .master");
+    let twodots = document.querySelectorAll(".recommendation .two .num_1 .dot li");
+    let twoleftbtn = document.querySelectorAll(".recommendation .two .num_1 .two")[0];
+    let tworightbtn = document.querySelectorAll(".recommendation .two .num_1 .two_2")[0];
+    let twowidths = parseInt(getComputedStyle(twoimgs[0], null).width);
+    xiaolunbo(twoimgs,twodots,twoleftbtn,tworightbtn,twowidths,3);
+
+    //3
+    let threeimgs = document.querySelectorAll(".recommendation .three .num_1 .banner .master");
+    let threedots = document.querySelectorAll(".recommendation .three .num_1 .dot li");
+    let threeleftbtn = document.querySelectorAll(".recommendation .three .num_1 .three")[0];
+    let threerightbtn = document.querySelectorAll(".recommendation .three .num_1 .three_3")[0];
+    let threewidths = parseInt(getComputedStyle(threeimgs[0], null).width);
+    xiaolunbo(threeimgs,threedots,threeleftbtn,threerightbtn,threewidths,3);
+
+    //4
+    let fourimgs = document.querySelectorAll(".recommendation .four .num_1 .banner .master");
+    let fourdots = document.querySelectorAll(".recommendation .four .num_1 .dot li");
+    let fourleftbtn = document.querySelectorAll(".recommendation .four .num_1 .four")[0];
+    let fourrightbtn = document.querySelectorAll(".recommendation .four .num_1 .four_4")[0];
+    let fourwidths = parseInt(getComputedStyle(fourimgs[0], null).width);
+    xiaolunbo(fourimgs,fourdots,fourleftbtn,fourrightbtn,fourwidths,3);
 
 
     //为你推荐
